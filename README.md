@@ -1,11 +1,4 @@
 # Dbms60   
-จัดทำโดย
-
-1. นายพร้อมพันธ์ ชัยมงคล
-2. นายภาณุพงศ์ ไข่คำ
-3. นายศุภวิชญ์ วังอะโศก
-4. นายสิทธิเดช หมื่นคำแปง
-5. นายอุกฤษฎ์ สูตรเลข
 
 web : https://www.dbms60.ga/ 
 
@@ -185,24 +178,42 @@ ESP.deepSleep(SECONDS_DS(5));
 int ldr = analogRead(A0);
 
 void setup()
+
 {
+
 Serial.begin(9600); //start te serial monitor
+
 }
 
+
 void loop()
+
 {
-  Firebase.setFloat("DHT22/bring", b);
-    if (Firebase.failed()) {
-      Serial.print("pushing /bringnees failed:");
-      Serial.println(Firebase.error());  
-      return;
-  }
-      Serial.print("pushed: /bringness/");
-      Serial.println(Firebase.getFloat("DHT22/bring"));
-  lcd.setCursor(11, 0);
-  lcd.print("bring");
-  lcd.setCursor(11, 1);
-  lcd.print(b,1);
+
+Firebase.setFloat("DHT22/bring", b);
+
+if (Firebase.failed()) {
+
+Serial.print("pushing /bringnees failed:");
+
+Serial.println(Firebase.error());  
+
+return;
+
+}
+
+Serial.print("pushed: /bringness/");
+
+Serial.println(Firebase.getFloat("DHT22/bring"));
+
+lcd.setCursor(11, 0);
+
+lcd.print("bring");
+
+lcd.setCursor(11, 1);
+
+lcd.print(b,1);
+
 }
 
 }
@@ -223,7 +234,13 @@ Session Key จะเป็นข้อมูลส่งแบบ Java โด�
 <a href="http://www.mx7.com/view2/A3hhNrNUrq1LMvkp" target="_blank"><img border="0" src="http://www.mx7.com/i/1cb/IY0rEp.png" /></a>
 
 
-# รูปคณะผู้จัดทำ 
+# จัดทำโดย
+
+1. นายพร้อมพันธ์ ชัยมงคล
+2. นายภาณุพงศ์ ไข่คำ
+3. นายศุภวิชญ์ วังอะโศก
+4. นายสิทธิเดช หมื่นคำแปง
+5. นายอุกฤษฎ์ สูตรเลข 
 
 <a href="http://www.mx7.com/view2/A3hi6AEJKMZkjx4c" target="_blank"><img border="0" src="http://www.mx7.com/i/1db/40mUUy.jpg" /></a>
 
