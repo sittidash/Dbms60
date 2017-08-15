@@ -13,6 +13,13 @@ web : https://www.dbms60.ga/
 
 <a href="http://www.mx7.com/view2/A3hc7qUGRyqcF7xy" target="_blank"><img border="0" src="http://www.mx7.com/i/194/1MaElJ.jpg" /></a>
 
+
+# อุปกรณ์ 
+1. NodeMCU เอาไว้รับค่าข้อมูลและส่งเข้าไปใน cloue Server
+2. Senser DHT22 ไว้ตรวจสอบค่าความชึ้นและอุณหภูมิแล้ว ส่งเข้าไปในบอร์ด NodeMCU
+3. LDR ใช้วัดว่าความสว่าง แล้วส่งเข้าบอ์ด NodeMCU
+4. จอ LCD ไว้แสดงค่าที่ได้รับจาก NodeMCU
+
 #####รายละเอียดรายต่อวงจรและใช้งานเบื้องต้น#####
 
 
@@ -167,31 +174,36 @@ ESP.deepSleep(SECONDS_DS(5));
 
 <a href="http://www.mx7.com/view2/A3hh9ocQoM1ICfN0" target="_blank"><img border="0" src="http://www.mx7.com/i/1c0/Jb24fX.png" /></a>
 
-7.สร้างสรรค์
+# 7.สร้างสรรค์
 
-1.นำพัดมาประยุกต์ใช้กับวงจร โดยการใช้พัดลมควบคุมความชื้นของวงจร
+1.นำ LDR มาประยุกต์ใช้กับวงจร โดยการใช้ LDR วัดค่าความสว่างของแสง
 
-2.หลักการทำงาน เมื่อความชื้นสูงกว่าที่กำลัง พัดลมจะระบายอากาศออกไปเพื่อให้ความชื้นลดลง และเมื่อลดลงถึงที่กำหนดไว้พัดลมจะปิด
-
-โดยใช้รีเลย์เป็นตัวควบคุมพัดลมอีกทีโดยรีเลย์ทำหน้าที่คล้ายสวิตซ์ไฟ
+2.หลักการทำงาน เมื่อ LDR วัดค่าแสงสว่างมากๆ ค่่าจะลดลง และถ้าแสงน้อยค่าจะเพิ่มขึ้น  (ค่า LDR จะอยู่ระหว่าง 0-1000)
 
 3.ตัวอยากของโค้ด ที่นำมาใช้งาน
 
-#define relay D5
+int ldr = analogRead(A0);
 
-void loop() {
+void setup()
+{
+Serial.begin(9600); //start te serial monitor
+}
 
-if(hu >= 80){
-
-digitalWrite(relay,HIGH);
-
-Serial.print("Fan ON\n");}
-
-else{
-
-digitalWrite(relay,LOW);
-
-Serial.print("Fan OFF\n");}
+void loop()
+{
+  Firebase.setFloat("DHT22/bring", b);
+    if (Firebase.failed()) {
+      Serial.print("pushing /bringnees failed:");
+      Serial.println(Firebase.error());  
+      return;
+  }
+      Serial.print("pushed: /bringness/");
+      Serial.println(Firebase.getFloat("DHT22/bring"));
+  lcd.setCursor(11, 0);
+  lcd.print("bring");
+  lcd.setCursor(11, 1);
+  lcd.print(b,1);
+}
 
 }
 
